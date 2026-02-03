@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anushka 💖 Be My Valentine</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffd6e8, #fff0f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Comic Sans MS", "Segoe UI", cursive;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      background: white;
+      padding: 28px 20px;
+      border-radius: 25px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      max-width: 380px;
+      width: 92%;
+      animation: popIn 0.6s ease;
+    }
+
+    h1 {
+      color: #ff4d88;
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: #555;
+      font-size: 1.05rem;
+      margin-bottom: 18px;
+    }
+
+    button {
+      font-size: 1.05rem;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 8px;
+    }
+
+    #yesBtn {
+      background: #ff4d88;
+      color: white;
+    }
+
+    #noBtn {
+      background: #eee;
+      color: #666;
+    }
+
+    #yesBtn:hover {
+      background: #ff1f66;
+      transform: scale(1.1);
+    }
+
+    img {
+      width: 100%;
+      border-radius: 18px;
+      margin-top: 15px;
+    }
+
+    .music {
+      margin-bottom: 15px;
+    }
+
+    .hearts {
+      position: absolute;
+      font-size: 22px;
+      animation: floatUp 4s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- 🎶 Kalank – Main Tera (Mobile Friendly) -->
+    <div class="music">
+      <iframe
+        width="100%"
+        height="80"
+        src="https://www.youtube.com/embed/H3ktrYY8xX0?playsinline=1"
+        title="Kalank - Main Tera"
+        frameborder="0"
+        allow="encrypted-media"
+        allowfullscreen>
+      </iframe>
+      <p style="font-size:0.85rem;">Tap play & feel the vibes 💕</p>
+    </div>
+
+    <h1 id="question">Anushka 💖</h1>
+    <p id="subtext">Will you be my Valentine? 🥺💘</p>
+
+    <button id="yesBtn">Yes 💕</button>
+    <button id="noBtn">No 🙈</button>
+
+    <!-- 💘 Final Screen -->
+    <div id="final" style="display:none;">
+      <h1>YAYYYYY 💖</h1>
+      <p>
+        AB HAAN BLDIYA HAI TOH,<br>
+        <strong>AAJA MERI GAADI MEIN BAITH JAA 🚗💘</strong>
+      </p>
+
+      <!-- 🚗 White MG Hector -->
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/3/35/MG_Hector_white.jpg"
+        alt="White MG Hector">
+    </div>
+
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const question = document.getElementById("question");
+    const subtext = document.getElementById("subtext");
+    const final = document.getElementById("final");
+
+    const noTexts = [
+      "Are you sure? 🥺",
+      "Anushka pleaseee 💔",
+      "Kalank chal raha hai yaar 🥹",
+      "I’ll give you extra hugs 🫂",
+      "Last chance… pinky promise 🤞💖"
+    ];
+
+    let count = 0;
+
+    noBtn.onclick = () => {
+      question.textContent = noTexts[count % noTexts.length];
+      count++;
+      yesBtn.style.transform = `scale(${1 + count * 0.18})`;
+    };
+
+    yesBtn.onclick = () => {
+      question.style.display = "none";
+      subtext.style.display = "none";
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+      final.style.display = "block";
+      startHearts();
+    };
+
+    function startHearts() {
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "hearts";
+        heart.textContent = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "-20px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>
